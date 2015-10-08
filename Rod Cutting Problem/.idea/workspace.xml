@@ -1,12 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="80f99c63-c536-4423-8156-198e37e4202d" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/com/recursion/execution/RodCuttingExecutionUsingRecursion.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/com/dynamicprogramming/implementation/RodCuttingProblemUsingDP.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/com/recursion/implementation/RodCuttingProblemUsingRecursion.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/uiDesigner.xml" />
-    </list>
+    <list default="true" id="80f99c63-c536-4423-8156-198e37e4202d" name="Default" comment="" />
     <ignored path="Rod Cutting Problem.iws" />
     <ignored path=".idea/workspace.xml" />
     <ignored path="$PROJECT_DIR$/out/" />
@@ -578,12 +573,12 @@
       <created>1444269023295</created>
       <option name="number" value="Default" />
       <updated>1444269023295</updated>
-      <workItem from="1444269024667" duration="2834000" />
+      <workItem from="1444269024667" duration="2917000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="2834000" />
+    <option name="totallyTimeSpent" value="2917000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="23" width="1440" height="812" extended-state="6" />
