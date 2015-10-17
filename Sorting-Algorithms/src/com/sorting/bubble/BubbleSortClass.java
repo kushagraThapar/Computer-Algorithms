@@ -1,4 +1,4 @@
-package com.sorting.insertion;
+package com.sorting.bubble;
 
 /**
  * Created by kushagrathapar on 10/13/15.
