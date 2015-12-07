@@ -11,7 +11,7 @@ public class Graph<T> {
     public HashMap<T, Vertex<T>> map = new HashMap<>();
     public int time = 1;
 
-    public boolean add(T value, Vertex<T> v) {
+    public boolean addThisNodeToGraph(T value, Vertex<T> v) {
         if (map.containsKey(value)) {
             return false;
         } else {
@@ -21,35 +21,26 @@ public class Graph<T> {
     }
 
     public void setInDegreeValue() {
-        for (Vertex<T> v : map.values()) {
-            if (!v.isBasic()) {
-                for (T name : v.dependencies) {
-                    if (map.containsKey(name)) {
+        map.values().stream().filter(v -> !v.isBasic()).forEach(v -> v.dependentNodes.stream().filter(map::containsKey).forEach(name -> {
 
-                        Vertex<T> d = map.get(name);
-                        d.inDegree++;
-                    }
-                }
-            }
-        }
+            Vertex<T> d = map.get(name);
+            d.inDegree++;
+        }));
     }
 
 
-    public boolean hasCycle() {
+    public boolean graphHasCycle() {
 
         int count = 0;
         Stack<Vertex<T>> s = new Stack<Vertex<T>>();
 
-        for (Vertex<T> v : map.values()) {
-            if (v.inDegree == 0)
-                s.push(v);
-        }
+        map.values().stream().filter(v -> v.inDegree == 0).forEach(s::push);
 
         while (!s.empty()) {
 
-            Vertex<T> v = (Vertex<T>) s.pop();
+            Vertex<T> v = s.pop();
             count++;
-            for (T n : v.dependencies) {
+            for (T n : v.dependentNodes) {
                 Vertex<T> d = map.get(n);
 
                 if (--d.inDegree == 0)
@@ -63,9 +54,6 @@ public class Graph<T> {
             return false;
     }
 
-    /*
-     * Returns true if the graph contains key name
-    */
     public boolean contains(T value) {
         if (map.containsKey(value)) {
             return true;
@@ -73,7 +61,7 @@ public class Graph<T> {
             return false;
     }
 
-    public int getTime(T value) {
+    public int getTimeStamp(T value) {
         if (map.containsKey(value)) {
             return map.get(value).timeStamp;
         } else {
@@ -82,7 +70,7 @@ public class Graph<T> {
         }
     }
 
-    public Map<T, Integer> getTimes() {
+    public Map<T, Integer> getAllTimeStamps() {
         Map<T, Integer> vertexTimes = new HashMap<>();
         for (Map.Entry<T, Vertex<T>> entry : map.entrySet()) {
             vertexTimes.put(entry.getKey(), entry.getValue().timeStamp);
@@ -90,7 +78,7 @@ public class Graph<T> {
         return vertexTimes;
     }
 
-    public void touch(T value) {
+    public void touchABasicFile(T value) {
 
         Vertex<T> v = map.get(value);
 
@@ -105,9 +93,9 @@ public class Graph<T> {
             System.out.println("File does not exist");
     }
 
-    public void make(T value) {
+    public void makeATargetFile(T value) {
         Vertex<T> vertex = map.get(value);
-        if(vertex == null) {
+        if (vertex == null) {
             System.out.println("The value entered is not a file [" + value + "]");
             return;
         }
@@ -119,10 +107,6 @@ public class Graph<T> {
         }
     }
 
-    /*
-     * Recursive function that updates a vertex's timestamp iff any of
-     * its dependencies have a timestamp greater than its own.
-    */
     private void update(T value) {
 
         if (map.containsKey(value)) {
@@ -130,18 +114,18 @@ public class Graph<T> {
 
             //Base Case
             if (v.isBasic()) {
-                v.visited = true;
+                v.visitedNode = true;
             } else {
-                if (!v.visited) {
+                if (!v.visitedNode) {
                     boolean upToDate = true;
-                    for (T n : v.dependencies) {
+                    for (T n : v.dependentNodes) {
                         Vertex<T> d = map.get(n);
                         update(d.getValue());
                         if (d.timeStamp > v.timeStamp) {
                             upToDate = false;
                         }
                     }
-                    v.visited = true;
+                    v.visitedNode = true;
                     if (upToDate) {
                         System.out.println(v.getValue() + " is up to date");
                     } else {
@@ -158,7 +142,7 @@ public class Graph<T> {
 
     public void resetVisited() {
         for (Vertex<T> v : map.values()) {
-            v.visited = false;
+            v.visitedNode = false;
         }
     }
 }

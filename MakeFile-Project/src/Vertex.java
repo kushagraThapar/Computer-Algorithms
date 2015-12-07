@@ -7,17 +7,17 @@ import java.util.ArrayList;
 public class Vertex<T> {
 
     T value;
-    public ArrayList<T> dependencies;
-    public boolean visited;
+    public ArrayList<T> dependentNodes;
+    public boolean visitedNode;
     int timeStamp;
     int inDegree;
 
     public Vertex(T value) {
-        dependencies = new ArrayList<>();
+        dependentNodes = new ArrayList<>();
         this.value = value;
         this.timeStamp = 0;
         this.inDegree = 0;
-        this.visited = false;
+        this.visitedNode = false;
     }
 
     public T getValue() {
@@ -25,16 +25,16 @@ public class Vertex<T> {
     }
 
     public void addAdj(T adj) {
-        dependencies.add(adj);
+        dependentNodes.add(adj);
     }
 
     @Override
     public String toString() {
-        return (value + " : " + dependencies);
+        return (value + " : " + dependentNodes);
     }
 
     public boolean isBasic() {
-        return (dependencies.size() == 0);
+        return (dependentNodes.size() == 0);
     }
 
     public void setTime(int time) {

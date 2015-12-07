@@ -1,9 +1,9 @@
 fakemake : fakeMakeTarget
 	$(RM) *.class
 
-fakeMakeTarget : FakeMake.class
-	   java FakeMake input.txt
+fakeMakeTarget : FakeMakeExecutable.class
+	   java FakeMakeExecutable input.txt
 
-FakeMake.class : FakeMake.java 
-		 javac FakeMake.java
+FakeMakeExecutable.class : FakeMakeExecutable.java
+		 javac FakeMakeExecutable.java
  

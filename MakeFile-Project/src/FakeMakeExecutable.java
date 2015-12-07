@@ -2,7 +2,7 @@
  * Created by kushagrathapar on 12/5/15.
  */
 
-public class FakeMake {
+public class FakeMakeExecutable {
 
     public static void main(String[] args) {
         if (args.length == 0) {
@@ -13,14 +13,10 @@ public class FakeMake {
             UtilityClass.exitWithFileError();
         }
 
-        // Initialize Graph with adjacency list implementation
-        //  Read input and validate the input
-
         Graph<String> graph = UtilityClass.readInput(fileName);
         graph.setInDegreeValue();
 
-        // Check for graph cycles
-        if (graph.hasCycle()) {
+        if (graph.graphHasCycle()) {
             UtilityClass.exitWithGraphCyclesError();
         }
 

@@ -48,7 +48,7 @@ public class UtilityClass {
                         }
                     }
                 }
-                graph.add(file, v);
+                graph.addThisNodeToGraph(file, v);
             }
         }
         return graph;
@@ -66,35 +66,35 @@ public class UtilityClass {
             } else if (menu.equalsIgnoreCase(TOUCH_COMMAND)) {
                 if (keyboard.hasNext()) {
                     file = keyboard.next();
-                    graph.touch(file);
+                    graph.touchABasicFile(file);
                 } else {
                     incorrectInput(menu);
                 }
             } else if (menu.equalsIgnoreCase(TIME_STAMP_COMMAND)) {
                 if (keyboard.hasNext()) {
                     file = keyboard.next();
-                    int time = graph.getTime(file);
-                    if(time != -1) {
+                    int time = graph.getTimeStamp(file);
+                    if (time != -1) {
                         System.out.println(time);
                     }
                 } else {
                     incorrectInput(menu);
                 }
             } else if (menu.equalsIgnoreCase(TIME_STAMPS_COMMAND)) {
-                Map<String, Integer> vertexTimes = graph.getTimes();
+                Map<String, Integer> vertexTimes = graph.getAllTimeStamps();
                 for (Map.Entry<String, Integer> entry : vertexTimes.entrySet()) {
                     System.out.println(entry.getKey() + " -> " + entry.getValue());
                 }
             } else if (menu.equalsIgnoreCase(MAKE_COMMAND)) {
                 if (keyboard.hasNext()) {
                     file = keyboard.next();
-                    graph.make(file);
+                    graph.makeATargetFile(file);
                 } else {
                     incorrectInput(menu);
                 }
             } else if (menu.equalsIgnoreCase(HELP_COMMAND)) {
                 printAllCommands();
-            } else if(menu.equalsIgnoreCase(QUIT_COMMAND)) {
+            } else if (menu.equalsIgnoreCase(QUIT_COMMAND)) {
                 System.exit(0);
             } else {
                 incorrectInput(menu);
@@ -104,7 +104,7 @@ public class UtilityClass {
 
     public static void exitWithFileError() {
         System.out.println("Please run this program in the following format:\n" +
-                "java FakeMake <file path containing the data>\n" +
+                "java FakeMakeExecutable <file path containing the data>\n" +
                 "The program will exit now...");
         System.exit(0);
     }
@@ -133,12 +133,12 @@ public class UtilityClass {
     public static void printAllCommands() {
         System.out.println();
         System.out.println("This program supports following commands... ");
-        System.out.println("time               Display current time");
-        System.out.println("touch <file>       Modify a basic file");
-        System.out.println("timestamp <file>   Display a file's timestamp");
-        System.out.println("timestamps         Displays time stamp of all the files");
-        System.out.println("make <file>        Compile target file");
-        System.out.println("quit               exit program");
+        System.out.println("time -> Display current time");
+        System.out.println("touch <file> -> Modify a basic file");
+        System.out.println("timestamp <file> -> Display a file's timestamp");
+        System.out.println("timestamps -> Displays time stamp of all the files");
+        System.out.println("make <file> -> Compile target file");
+        System.out.println("quit -> exit program");
         System.out.println();
     }
 }
