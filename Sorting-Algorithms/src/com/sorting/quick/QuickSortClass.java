@@ -42,4 +42,10 @@ public class QuickSortClass {
         array[i] = element;
         return i;
     }
+
+    public static int findPartitionInOriginalWay(int array[], int start, int end) {
+        int partition;
+
+        return partition;
+    }
 }
