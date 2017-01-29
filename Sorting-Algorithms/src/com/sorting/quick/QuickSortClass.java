@@ -6,7 +6,7 @@ package com.sorting.quick;
 public class QuickSortClass {
 
     public static void main(String[] args) {
-        int array[] = new int[]{0, -1, 2, 3, 4, 10, -5, -6, -7, -8};
+        int array[] = new int[]{-20, -1, 2, 3, 4, 10, -5, -6, -7, -8};
         System.out.println("... Initially ...");
         for (int i : array) {
             System.out.println(i);
@@ -16,17 +16,26 @@ public class QuickSortClass {
         for (int i : array) {
             System.out.println(i);
         }
+
     }
 
     public static void quickSort(int[] array, int start, int end) {
         if (start < end) {
-            int partitionedIndex = findPartition(array, start, end);
+            int partitionedIndex = findPartitionUsingLomutoScheme(array, start, end);
             quickSort(array, start, partitionedIndex - 1);
             quickSort(array, partitionedIndex + 1, end);
         }
     }
 
-    public static int findPartition(int array[], int start, int end) {
+    /**
+     * This is the partition method implemented using Lomuto partition scheme
+     *
+     * @param array
+     * @param start
+     * @param end
+     * @return
+     */
+    public static int findPartitionUsingLomutoScheme(int array[], int start, int end) {
         int i = start - 1, temp;
         int element = array[end];
         for (int j = start; j < end; j++) {
@@ -43,8 +52,16 @@ public class QuickSortClass {
         return i;
     }
 
-    public static int findPartitionInOriginalWay(int array[], int start, int end) {
-        int partition;
+    /**
+     * This is the partition method implemented using Hoare partition scheme
+     *
+     * @param array
+     * @param start
+     * @param end
+     * @return
+     */
+    public static int findPartitionUsingHoareScheme(int array[], int start, int end) {
+        int partition = 0;
 
         return partition;
     }
