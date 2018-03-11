@@ -55,11 +55,15 @@ public class PostorderTreeCreation {
                 parentMappings.put(parent, -1);
                 return parentMappings;
             } else {
-                parentMappings.put(parent, currentStack.peek());
-                leftRightMappings.put(currentStack.peek(), leftRightMappings.getOrDefault(currentStack.peek(), 0) + 1);
-                if (leftRightMappings.get(currentStack.peek()) == 2) {
+                int lastParent = currentStack.peek();
+                parentMappings.put(parent, lastParent);
+                leftRightMappings.put(lastParent, leftRightMappings.getOrDefault(lastParent, 0) + 1);
+                while(leftRightMappings.get(lastParent) == 2) {
                     if (currentStack.size() > 1) {
-                        parentMappings.put(currentStack.pop(), currentStack.peek());
+                        parent = currentStack.pop();
+                        lastParent = currentStack.peek();
+                        parentMappings.put(parent, lastParent);
+                        leftRightMappings.put(lastParent, leftRightMappings.getOrDefault(lastParent, 0) + 1);
                     } else {
                         parentMappings.put(currentStack.pop(), -1);
                         return parentMappings;
