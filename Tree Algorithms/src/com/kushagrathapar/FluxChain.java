@@ -31,6 +31,7 @@ public class FluxChain {
         inputArray = new int[]{19, 14, 28};
         outputArray = answer(height, inputArray);
         printArray(outputArray);
+
     }
 
     public static int[] answer(int h, int[] q) {
