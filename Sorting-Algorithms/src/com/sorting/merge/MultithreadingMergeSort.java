@@ -1,18 +1,18 @@
 package com.sorting.merge;
 
+import com.util.Utility;
+
 import java.util.Random;
+import java.util.concurrent.ForkJoinPool;
+import java.util.concurrent.ForkJoinTask;
 
-import static com.util.Utility.printSystemDetails;
-
-/**
- * Created by kushagrathapar on 10/12/15.
- */
-public class MergeSortClass {
+public class MultithreadingMergeSort {
 
     private static final int SIZE = 2100000000;
+    private static final ForkJoinPool forkJoinPool = new ForkJoinPool(Runtime.getRuntime().availableProcessors());
 
     public static void main(String[] args) {
-        printSystemDetails();
+        Utility.printSystemDetails();
         int[] array = new int[SIZE];
         Random random = new Random();
         for (int i = 0; i < SIZE; i++) {
@@ -20,10 +20,10 @@ public class MergeSortClass {
         }
         long startTime = System.currentTimeMillis();
         mergeSort(array, 0, array.length - 1);
-        printSystemDetails();
+        Utility.printSystemDetails();
         long endTime = System.currentTimeMillis();
         long milliTime = endTime - startTime;
-        System.out.println("Time taken to merge sort sequentially : { " + (milliTime / 1000.0) + " } seconds");
+        System.out.println("Time taken to merge sort sequentially : { " + milliTime + " } milliseconds");
         System.out.println("Testing merge sort correctness");
         for (int i = 1; i < array.length; i++) {
             if (array[i - 1] > array[i]) {
@@ -38,12 +38,44 @@ public class MergeSortClass {
             return;
         }
         int mid = start + (end - start) / 2;
-        mergeSort(elements, start, mid);
-        mergeSort(elements, mid + 1, end);
+        forkJoinPool.invoke(new ForkJoinTask<Void>() {
+            @Override
+            public Void getRawResult() {
+                return null;
+            }
+
+            @Override
+            protected void setRawResult(Void value) {
+
+            }
+
+            @Override
+            protected boolean exec() {
+                mergeSort(elements, start, mid);
+                return true;
+            }
+        });
+        forkJoinPool.invoke(new ForkJoinTask<Void>() {
+            @Override
+            public Void getRawResult() {
+                return null;
+            }
+
+            @Override
+            protected void setRawResult(Void value) {
+
+            }
+
+            @Override
+            protected boolean exec() {
+                mergeSort(elements, mid + 1, end);
+                return true;
+            }
+        });
         mergeTwoArrays(elements, start, mid, mid + 1, end);
     }
 
-    public static void mergeTwoArrays(int[] elements, int start1, int end1, int start2, int end2) {
+    private static void mergeTwoArrays(int[] elements, int start1, int end1, int start2, int end2) {
         int i = start1, j = start2, k = start1;
         while (i <= end1 && j <= end2) {
             if (elements[i] < elements[j]) {

@@ -1,6 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ProjectModuleManager">
-    <modules />
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/DynamicProgramingProject/DynamicProgramingProject.iml" filepath="$PROJECT_DIR$/DynamicProgramingProject/DynamicProgramingProject.iml" />
+      <module fileurl="file://$PROJECT_DIR$/MakeFile-Project/MakeFile-Project.iml" filepath="$PROJECT_DIR$/MakeFile-Project/MakeFile-Project.iml" />
+      <module fileurl="file://$PROJECT_DIR$/Rod Cutting Problem/Rod Cutting Problem.iml" filepath="$PROJECT_DIR$/Rod Cutting Problem/Rod Cutting Problem.iml" />
+      <module fileurl="file://$PROJECT_DIR$/Sorting-Algorithms/Sorting-Algorithms.iml" filepath="$PROJECT_DIR$/Sorting-Algorithms/Sorting-Algorithms.iml" />
+      <module fileurl="file://$PROJECT_DIR$/Tree Algorithms/src/Tree Algorithms.iml" filepath="$PROJECT_DIR$/Tree Algorithms/src/Tree Algorithms.iml" />
+      <module fileurl="file://$PROJECT_DIR$/Tree Algorithms/Tree Algorithms1.iml" filepath="$PROJECT_DIR$/Tree Algorithms/Tree Algorithms1.iml" />
+    </modules>
   </component>
 </project>
